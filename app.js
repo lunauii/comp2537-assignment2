@@ -6,6 +6,7 @@ import { MongoClient } from 'mongodb';
 import bcrypt from 'bcrypt'
 import {fileURLToPath} from 'url';
 import Joi from 'joi';
+import crypto from 'crypto';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -26,7 +27,10 @@ app.use(session({
     store: MongoStore.create({
         mongoUrl: mongoUrl,
         collectionName: 'sessions',
-        ttl: 60 * 60 // 1 hour expiration
+        ttl: 60 * 60,
+        crypto: {
+            secret: process.env.MONGODB_SESSION_SECRET
+        }
     }),
     resave: false,
     saveUninitialized: false,
