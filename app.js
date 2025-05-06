@@ -1,18 +1,25 @@
 import express from 'express';
+import session from 'express-session';
 import path from 'path';
+import MongoStore from 'connect-mongo';
+import { MongoClient } from 'mongodb';
+import bcrypt from 'bcrypt'
 import {fileURLToPath} from 'url';
+import Joi from 'joi';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const app = express();
 
-require('dotenv').config();
+import "dotenv/config.js";
 
 const mongoDBHost = process.env.MONGODB_HOST;
 const mongoDBUser = process.env.MONGODB_USER;
 const mongoDBPassword = process.env.MONGODB_PASSWORD;
 const mongoDBDatabase = process.env.MONGODB_DATABASE;
+
+const mongoUrl = `mongodb+srv://${mongoDBUser}:${mongoDBPassword}@${mongoDBHost}/${mongoDBDatabase}`
 
 app.use(session({
     secret: process.env.NODE_SESSION_SECRET,
@@ -35,7 +42,22 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
-app.set('view engine', 'ejs');
+const client = new MongoClient(mongoUrl);
+
+let db;
+let userCollection;
+let conn;
+
+(async () => {
+    try {
+        conn = await client.connect();
+        db = client.db();
+        userCollection = db.collection('users');
+        console.log('Connected to MongoDB');
+    } catch (err) {
+        console.error('MongoDB connection error:', err);
+    }
+})();
 
 app.get('/', (req, res) => {
     if (req.session.user) {
