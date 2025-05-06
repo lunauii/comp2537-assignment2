@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Members Area</title>
+</head>
+<body>
+    <h1>Hello, <%= user.name %>.</h1>
+
+    <div>
+        <img src="/images/<%= image %>" alt="Random image" width="400">
+    </div>
+
+    <form action="/logout" method="get">
+        <button type="submit">Sign out</button>
+    </form>
+
+
+</body>
+
+</html>
