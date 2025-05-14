@@ -1,14 +1,9 @@
-<!DOCTYPE html>
-<html>
+<%- include("templates/header") %>
 
-<head>
-    <meta charset="UTF-8">
-    <title>Error</title>
-</head>
+<div class="container d-flex flex-column justify-content-center align-items-center vh-100">
+    <p class="text-danger fw-bold fs-3 text-center"><%= error %></p>
 
-<body>
-    <p><%= error %></p>
-    <a href="/login">Try again</a>
-</body>
+    <a href="/login" class="btn btn-outline-danger btn-lg mt-3">Try again</a>
+</div>
 
-</html>
+<%- include("templates/footer") %>

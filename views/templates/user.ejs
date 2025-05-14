@@ -1,0 +1,20 @@
+<table class="table table-bordered table-striped w-75 mx-auto">
+    <tbody>
+        <tr>
+            <td class="align-middle">
+                <div>
+                    <span class="fw-bold d-block"><%= user.name %></span>
+                    <span class="text-muted small d-block">(<%= user.type %>)</span>
+                </div>
+            </td>
+            <td class="align-middle text-end">
+                <form action="/promoteUser?name=<%= user.name %>&email=<%= user.email %>" method="post" class="d-inline">
+                    <button type="submit" class="btn btn-success btn-sm me-2">Promote to Admin</button>
+                </form>
+                <form action="/demoteUser?name=<%= user.name %>&email=<%= user.email %>" method="post" class="d-inline">
+                    <button type="submit" class="btn btn-danger btn-sm">Demote to User</button>
+                </form>
+            </td>
+        </tr>
+    </tbody>
+</table>

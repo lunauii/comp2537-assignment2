@@ -1,22 +1,23 @@
-<!DOCTYPE html>
-<html>
+<%- include("templates/header") %>
 
-<head>
-    <meta charset="UTF-8">
-    <title>Members Area</title>
-</head>
-<body>
-    <h1>Hello, <%= user.name %>.</h1>
+<div class="container text-center my-5">
+    <h1 class="mb-4">Hello, <%= user.name %>.</h1>
 
-    <div>
-        <img src="/images/<%= image %>" alt="Random image" width="400">
+    <div class="row justify-content-center mb-4">
+        <div class="col-12 col-md-4 mb-3 mb-md-0">
+            <img src="/images/image1.png" alt="Cat" class="img-fluid rounded">
+        </div>
+        <div class="col-12 col-md-4 mb-3 mb-md-0">
+            <img src="/images/image2.png" alt="Cat 2" class="img-fluid rounded">
+        </div>
+        <div class="col-12 col-md-4">
+            <img src="/images/image3.png" alt="Cat 3" class="img-fluid rounded">
+        </div>
     </div>
 
     <form action="/logout" method="get">
-        <button type="submit">Sign out</button>
+        <button type="submit" class="btn btn-outline-danger btn-lg">Sign out</button>
     </form>
+</div>
 
-
-</body>
-
-</html>
+<%- include("templates/footer") %>

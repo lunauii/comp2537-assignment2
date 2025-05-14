@@ -1,18 +1,15 @@
-<!DOCTYPE html>
-<html>
-    
-<head>
-  <title>Home page</title>
-</head>
+<%- include("templates/header") %>
 
-<body>
-    <p>Hello, <%= user.name %>!</p>
-    <form action="/members" method="get">
-        <button type="submit">Go to Members Area</button>
-    </form>
-    <form action="/logout" method="get">
-        <button type="submit">Logout</button>
-    </form>
-</body>
+<div class="container d-flex flex-column justify-content-center align-items-center vh-100">
+    <p class="display-4 text-center">Hello, <%= user.name %>!</p>
 
-</html>
+    <form action="/members" method="get" class="mb-2 w-100 d-flex justify-content-center">
+        <button type="submit" class="btn btn-primary btn-lg">Go to Members Area</button>
+    </form>
+
+    <form action="/logout" method="get" class="w-100 d-flex justify-content-center">
+        <button type="submit" class="btn btn-outline-secondary btn-lg">Logout</button>
+    </form>
+</div>
+
+<%- include("templates/footer") %>
